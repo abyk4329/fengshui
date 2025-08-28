@@ -2,16 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Hello+Paris+Script&display=swap');
 
 :root {
-    --grey-olive: #A0A18F;
-    --ash-grey: #A7B4AA;
-    --cactus: #597358;
-    --clam-shell: #D4A098;
-    --rosy-finch: #895056;
-    --gold: #D4AF37;
-    --gold-soft: rgba(212,175,55,0.15);
-    --bg-1: #fbf8f5;
-    --bg-2: #f4efe8;
-    --muted: #6b6b63;
+    /* New organic palette requested by user */
+    --bg-1: #FAFAFA;   /* לבן עדין / חול בהיר */
+    --bg-2: #F4EAE5;   /* בז' חם בהיר (חול זהוב) */
+    --sand-rose: #D7B19C; /* חום־ורדרד רך (חול ורדרד) */
+    --muted-brown: #998F8A; /* חום בינוני עם אפור */
+    --olive-smoke: #70887A; /* ירקרק־אפור כהה / חום זית מעושן */
+    --gold: #D4AF37; /* champagne gold accent */
+    --gold-soft: rgba(212,175,55,0.14);
+    --muted: var(--muted-brown);
+
+    /* backward-compatible aliases (used by earlier rules) */
+    --cactus: var(--olive-smoke);
+    --ash-grey: var(--muted-brown);
+    --rosy-finch: var(--sand-rose);
 }
 
 /* Reset */
@@ -55,9 +59,12 @@ header p { color: var(--ash-grey); margin-top:6px; }
 
 /* signature */
 .by-ksenia {
-    font-family: 'Hello Paris Script', cursive;
-    color: var(--gold);
-    font-size: 18px;
+    /* modern, thin, large 'by Ksenia' as requested */
+    font-family: 'Assistant', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    font-weight: 300;
+    color: var(--olive-smoke);
+    font-size: 24px;
+    letter-spacing: 0.02em;
     opacity: 0.95;
 }
 
@@ -131,7 +138,14 @@ button:active { transform: translateY(1px); }
 .bad-directions li:before { content:'✗ '; color:var(--rosy-finch) }
 
 .creator-info { margin-top:22px; text-align:center; color:var(--ash-grey) }
-.creator-name { font-family:'Hello Paris Script', cursive; color:var(--gold); font-size:20px; margin-top:6px }
+.creator-name { 
+    /* use modern thin large styling for the creator byline */
+    font-family: 'Assistant', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+    font-weight: 300;
+    color: var(--olive-smoke);
+    font-size: 26px;
+    margin-top:6px;
+}
 .gold-line { height:2px; width:84px; background:linear-gradient(90deg, transparent, var(--gold), transparent); margin:12px auto }
 
 footer { text-align:center; color:var(--ash-grey); margin-top:26px }
