@@ -2,16 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Hello+Paris+Script&display=swap');
 
 :root {
-    --col-peanut: #C9C2B2;
-    --col-cream: #D4CFC2;
-    --col-warm-beige: #E0DDCF;
-    --col-soft-brown: #A69B8B;
-    --col-deep-brown: #8B7D6B;
+    --col-grey-olive: #A0A18F;
+    --col-ash-grey: #A7B4AA;
+    --col-cactus: #597358;
+    --col-clam-shell: #D4A098;
+    --col-rosy-finch: #895056;
     --col-gold: #D4AF37;
     --col-light-gold: #F5E6A3;
     --col-warm-gold: #E8C547;
+    --col-champagne: #F7E7CE;
 
-    --bg-grad: linear-gradient(135deg, var(--col-warm-beige) 0%, var(--col-cream) 50%, var(--col-peanut) 100%);
+    --bg-grad: linear-gradient(135deg, #f8f4f0 0%, var(--col-champagne) 30%, #f0e8dc 70%, var(--col-ash-grey) 100%);
+    --gold-accent: linear-gradient(90deg, transparent 0%, var(--col-warm-gold) 45%, var(--col-gold) 55%, transparent 100%);
 }
 
 * {
@@ -26,11 +28,36 @@ body {
     min-height: 100vh;
     direction: rtl;
     text-align: right;
-    color: var(--col-deep-brown);
+    color: var(--col-rosy-finch);
     line-height: 1.7;
     font-weight: 400;
     opacity: 1 !important;
     transition: opacity 0.8s ease-in-out;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gold-accent);
+    z-index: 1000;
+    opacity: 0.6;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--gold-accent);
+    z-index: 1000;
+    opacity: 0.6;
 }
 
 body.loaded {
@@ -45,9 +72,22 @@ body.loaded {
 
 header {
     text-align: center;
-    color: var(--col-deep-brown);
+    color: var(--col-cactus);
     margin-bottom: 50px;
-    padding: 40px 0;
+    padding: 60px 0;
+    position: relative;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 1px;
+    background: var(--gold-accent);
+    opacity: 0.8;
 }
 
 .logo-container {
@@ -99,23 +139,38 @@ header {
 }
 
 header h1 {
-    font-size: 3em;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: var(--col-deep-brown);
+    font-size: 3.5em;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--col-cactus);
     letter-spacing: -0.025em;
-    background: none;
+    background: linear-gradient(135deg, var(--col-cactus) 0%, var(--col-rosy-finch) 100%);
     -webkit-background-clip: text;
     background-clip: text;
-    -webkit-text-fill-color: initial;
+    -webkit-text-fill-color: transparent;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.4s forwards;
+    position: relative;
+}
+
+header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--col-warm-gold);
+    border-radius: 1px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 0.8s forwards;
 }
 
 header p {
-    font-size: 1.2em;
-    color: var(--col-soft-brown);
-    margin-bottom: 20px;
+    font-size: 1.3em;
+    color: var(--col-grey-olive);
+    margin-bottom: 25px;
     font-weight: 400;
     opacity: 0;
     animation: fadeInUp 1s ease-out 0.6s forwards;
@@ -152,27 +207,67 @@ header p {
 }
 
 .section {
-    background: rgba(201, 194, 178, 0.4);
-    backdrop-filter: blur(20px);
-    border-radius: 24px;
-    padding: 50px 40px;
-    margin: 30px auto;
-    max-width: 600px;
-    border: 1px solid rgba(166, 155, 139, 0.2);
+    background: rgba(167, 180, 170, 0.15);
+    backdrop-filter: blur(25px);
+    border-radius: 28px;
+    padding: 60px 50px;
+    margin: 40px auto;
+    max-width: 650px;
+    border: 1px solid rgba(160, 161, 143, 0.25);
     box-shadow: 
-        0 20px 25px -5px rgba(139, 125, 107, 0.1),
-        0 10px 10px -5px rgba(139, 125, 107, 0.05);
+        0 25px 35px -10px rgba(89, 115, 88, 0.12),
+        0 15px 20px -8px rgba(89, 115, 88, 0.08),
+        inset 0 1px 0 rgba(245, 231, 206, 0.3);
     opacity: 1;
     transform: translateY(0);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     display: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: var(--gold-accent);
+    opacity: 0.4;
+}
+
+.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    height: 1px;
+    background: var(--gold-accent);
+    opacity: 0.4;
 }
 
 .section.active {
     display: block !important;
     opacity: 1 !important;
     transform: translateY(0) !important;
-    animation: slideInFade 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: elegantSlideIn 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes elegantSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+    }
+    60% {
+        opacity: 0.8;
+        transform: translateY(-5px) scale(1.01);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes slideInFade {
@@ -184,18 +279,33 @@ header p {
 
 .section:hover {
     box-shadow: 
-        0 10px 15px -3px rgba(57, 70, 58, 0.08),
-        0 4px 6px -2px rgba(57, 70, 58, 0.05);
-    transform: translateY(-2px);
+        0 35px 45px -12px rgba(89, 115, 88, 0.15),
+        0 20px 25px -10px rgba(89, 115, 88, 0.1),
+        inset 0 1px 0 rgba(245, 231, 206, 0.4);
+    transform: translateY(-3px) scale(1.005);
+    border-color: rgba(212, 175, 55, 0.3);
 }
 
 .section h2 {
-    color: var(--col-deep-brown);
-    margin-bottom: 30px;
+    color: var(--col-cactus);
+    margin-bottom: 35px;
     text-align: center;
-    font-size: 2em;
-    font-weight: 600;
+    font-size: 2.2em;
+    font-weight: 700;
     letter-spacing: -0.025em;
+    position: relative;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--col-warm-gold), transparent);
+    border-radius: 1px;
 }
 
 .form-group {
@@ -235,21 +345,25 @@ header p {
 }
 
 button {
-    background: var(--col-warm-gold);
-    color: var(--col-deep-brown);
-    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--col-warm-gold) 0%, var(--col-gold) 100%);
+    color: var(--col-rosy-finch);
+    padding: 18px 40px;
     border: none;
-    border-radius: 16px;
+    border-radius: 20px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: inherit;
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: block;
-    margin: 30px auto;
-    box-shadow: 0 4px 6px -1px rgba(212, 175, 55, 0.25);
+    margin: 35px auto;
+    box-shadow: 
+        0 8px 15px -3px rgba(212, 175, 55, 0.3),
+        0 4px 8px -2px rgba(212, 175, 55, 0.15);
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    letter-spacing: 0.5px;
 }
 
 button::before {
@@ -259,14 +373,17 @@ button::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(201, 194, 178, 0.2), transparent);
-    transition: left 0.5s;
+    background: linear-gradient(90deg, transparent, rgba(247, 231, 206, 0.4), transparent);
+    transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px -3px rgba(212, 175, 55, 0.3);
-    background: var(--col-gold);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 
+        0 15px 25px -5px rgba(212, 175, 55, 0.4),
+        0 8px 15px -3px rgba(212, 175, 55, 0.2);
+    background: linear-gradient(135deg, var(--col-gold) 0%, #c19b26 100%);
+    border-color: rgba(212, 175, 55, 0.6);
 }
 
 button:hover::before {
@@ -316,22 +433,65 @@ button:active {
 
 .compass {
     position: relative;
-    width: 350px;
-    height: 350px;
+    width: 380px;
+    height: 380px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--col-cream) 0%, var(--col-peanut) 70%, var(--col-soft-brown) 100%);
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(245, 231, 206, 0.9) 0%, transparent 50%),
+        radial-gradient(circle, var(--col-ash-grey) 0%, var(--col-grey-olive) 40%, var(--col-cactus) 100%);
     border: 3px solid var(--col-gold);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 
-        0 20px 25px -5px rgba(139, 125, 107, 0.15),
-        0 10px 10px -5px rgba(139, 125, 107, 0.1),
-        inset 0 2px 4px rgba(201, 194, 178, 0.9);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        0 30px 40px -15px rgba(89, 115, 88, 0.2),
+        0 15px 25px -10px rgba(89, 115, 88, 0.15),
+        inset 0 2px 4px rgba(247, 231, 206, 0.8),
+        inset 0 -2px 4px rgba(89, 115, 88, 0.3);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
-    animation: fadeInScale 1s ease-out 0.5s forwards;
+    animation: compassAppear 1.5s ease-out 0.5s forwards;
     transform-origin: center;
+    position: relative;
+}
+
+.compass::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    pointer-events: none;
+}
+
+.compass::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    pointer-events: none;
+}
+
+@keyframes compassAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.7) rotate(-20deg);
+    }
+    70% {
+        opacity: 0.8;
+        transform: scale(1.05) rotate(5deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
 }
 
 .compass.rotating {
@@ -356,61 +516,78 @@ button:active {
 }
 
 .compass:hover {
-    transform: scale(1.02);
+    transform: scale(1.03);
     box-shadow: 
-        0 25px 30px -5px rgba(139, 125, 107, 0.2),
-        0 15px 15px -5px rgba(139, 125, 107, 0.1);
+        0 40px 50px -20px rgba(89, 115, 88, 0.25),
+        0 20px 30px -15px rgba(89, 115, 88, 0.2),
+        inset 0 2px 4px rgba(247, 231, 206, 0.9),
+        inset 0 -2px 4px rgba(89, 115, 88, 0.4);
+    border-color: var(--col-warm-gold);
 }
 
 .compass-center {
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    background: var(--col-deep-brown);
-    box-shadow: 0 2px 4px rgba(139, 125, 107, 0.3);
+    background: radial-gradient(circle, var(--col-gold) 0%, var(--col-rosy-finch) 100%);
+    box-shadow: 
+        0 3px 6px rgba(137, 80, 86, 0.3),
+        inset 0 1px 2px rgba(212, 175, 55, 0.5);
     z-index: 10;
+    border: 2px solid var(--col-champagne);
 }
 
 .compass-needle {
     position: absolute;
-    width: 4px;
-    height: 120px;
-    background: linear-gradient(180deg, #dc2626 0%, #dc2626 45%, var(--col-deep-brown) 55%, var(--col-deep-brown) 100%);
-    border-radius: 2px;
+    width: 5px;
+    height: 140px;
+    background: linear-gradient(180deg, 
+        #dc2626 0%, 
+        #ef4444 20%, 
+        #dc2626 45%, 
+        var(--col-gold) 50%,
+        var(--col-rosy-finch) 55%, 
+        var(--col-cactus) 80%, 
+        var(--col-rosy-finch) 100%);
+    border-radius: 3px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     transform-origin: center center;
     z-index: 5;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 1s ease-in-out;
+    box-shadow: 
+        0 3px 8px rgba(0, 0, 0, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .compass-needle::before {
     content: '';
     position: absolute;
-    top: -8px;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-bottom: 16px solid #dc2626;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 20px solid #dc2626;
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .compass-needle::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 16px solid var(--col-deep-brown);
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 20px solid var(--col-rosy-finch);
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
 }
 
 .compass-directions {
@@ -577,6 +754,65 @@ button:active {
     background: var(--col-warm-gold);
     box-shadow: 0 8px 10px -4px rgba(212, 175, 55, 0.3);
     transform: translateY(-2px) scale(1.02);
+}
+
+.creator-info {
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(212, 160, 152, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.creator-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gold-accent);
+    opacity: 0.6;
+}
+
+.created-by {
+    font-size: 1.1em;
+    color: var(--col-cactus);
+    font-weight: 500;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.2s forwards;
+}
+
+.creator-name {
+    font-family: 'Hello Paris Script', cursive;
+    font-size: 1.8em;
+    color: var(--col-gold);
+    font-weight: 400;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 4px rgba(212, 175, 55, 0.2);
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.4s forwards;
+}
+
+.gold-line {
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--col-warm-gold), transparent);
+    margin: 15px auto;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.6s forwards;
+}
+
+.description {
+    font-size: 0.95em;
+    color: var(--col-grey-olive);
+    font-style: italic;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.8s forwards;
 }
 
 footer {

@@ -222,37 +222,74 @@ function setupOrientationHandling() {
     const statusEl = document.getElementById('orientation-status');
     if (!btn) return;
 
-    const onHeading = (alpha) => {
-        // התאמה ל-RTL/פריסה: 0=N, 90=E, 180=S, 270=W
+    let orientationHandler = null;
+
+    const onHeading = (event) => {
         const needle = document.getElementById('compass-needle');
         if (!needle) return;
-        const deg = typeof alpha === 'number' ? alpha : 0;
-        needle.style.transform = `translate(-50%, -50%) rotate(${deg}deg)`;
+        
+        // שימוש ב-alpha (כיוון מגנטי) עם התאמה ל-RTL
+        let heading = event.alpha || 0;
+        
+        // התאמה למגנטיות (אם יש webkitCompassHeading)
+        if (event.webkitCompassHeading) {
+            heading = event.webkitCompassHeading;
+        }
+        
+        // סיבוב המחט - הפיכת הכיוון למעלות
+        needle.style.transform = `translate(-50%, -50%) rotate(${360 - heading}deg)`;
     };
 
-    const attachListener = () => {
-        if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
-            // iOS
-            DeviceOrientationEvent.requestPermission().then((res) => {
-                if (res === 'granted') {
-                    window.addEventListener('deviceorientation', (e) => onHeading(e.alpha));
-                    statusEl && (statusEl.textContent = 'מצפן חי מופעל');
+    const enableCompass = async () => {
+        try {
+            // בדיקה אם זה iOS שדורש הרשאה מפורשת
+            if (typeof DeviceOrientationEvent !== 'undefined' && 
+                typeof DeviceOrientationEvent.requestPermission === 'function') {
+                
+                const permission = await DeviceOrientationEvent.requestPermission();
+                
+                if (permission === 'granted') {
+                    orientationHandler = onHeading;
+                    window.addEventListener('deviceorientation', orientationHandler);
+                    if (statusEl) statusEl.textContent = '🧭 מצפן חי פעיל - סובב את המכשיר';
+                    btn.style.display = 'none';
                 } else {
-                    statusEl && (statusEl.textContent = 'ההרשאה נדחתה. משתמשים בברירת מחדל.');
+                    if (statusEl) statusEl.textContent = '❌ ההרשאה נדחתה';
                 }
-            }).catch(() => {
-                statusEl && (statusEl.textContent = 'שגיאה בהרשאה. משתמשים בברירת מחדל.');
-            });
-        } else if (window.DeviceOrientationEvent) {
-            // אנדרואיד/דפדפנים התומכים ללא בקשת הרשאה מפורשת
-            window.addEventListener('deviceorientation', (e) => onHeading(e.alpha));
-            statusEl && (statusEl.textContent = 'מצפן חי מופעל');
-        } else {
-            statusEl && (statusEl.textContent = 'הדפדפן לא תומך במצפן חי.');
+            } 
+            // אנדרואיד ודפדפנים אחרים
+            else if (typeof DeviceOrientationEvent !== 'undefined') {
+                // בדיקה אם האירוע זמין
+                const testHandler = (e) => {
+                    if (e.alpha !== null || e.beta !== null || e.gamma !== null) {
+                        window.removeEventListener('deviceorientation', testHandler);
+                        orientationHandler = onHeading;
+                        window.addEventListener('deviceorientation', orientationHandler);
+                        if (statusEl) statusEl.textContent = '🧭 מצפן חי פעיל - סובב את המכשיר';
+                        btn.style.display = 'none';
+                    } else {
+                        window.removeEventListener('deviceorientation', testHandler);
+                        if (statusEl) statusEl.textContent = '❌ המכשיר לא תומך במצפן';
+                    }
+                };
+                
+                window.addEventListener('deviceorientation', testHandler);
+                setTimeout(() => {
+                    window.removeEventListener('deviceorientation', testHandler);
+                    if (statusEl && statusEl.textContent === '') {
+                        statusEl.textContent = '❌ המכשיר לא תומך במצפן';
+                    }
+                }, 2000);
+            } else {
+                if (statusEl) statusEl.textContent = '❌ הדפדפן לא תומך במצפן חי';
+            }
+        } catch (error) {
+            console.error('Compass error:', error);
+            if (statusEl) statusEl.textContent = '❌ שגיאה בהפעלת המצפן';
         }
     };
 
-    btn.onclick = attachListener;
+    btn.addEventListener('click', enableCompass);
 }
 
 // עדכון הכיוונים במצפן
