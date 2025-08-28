@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hello+Paris+Script&display=swap');
 
 :root {
-    --col-deep-green: #39463A;
-    --col-pinkish-brown: #AB8A7A;
-    --col-smoky-blue: #73868A;
-    --col-sandy-brown: #927C67;
-    --col-light-beige: #E0D7C7;
+    --col-peanut: #C9C2B2;
+    --col-cream: #D4CFC2;
+    --col-warm-beige: #E0DDCF;
+    --col-soft-brown: #A69B8B;
+    --col-deep-brown: #8B7D6B;
+    --col-gold: #D4AF37;
+    --col-light-gold: #F5E6A3;
+    --col-warm-gold: #E8C547;
 
-    --bg-grad: linear-gradient(135deg, var(--col-light-beige) 0%, #f0e9db 100%);
+    --bg-grad: linear-gradient(135deg, var(--col-warm-beige) 0%, var(--col-cream) 50%, var(--col-peanut) 100%);
 }
 
 * {
@@ -22,7 +26,7 @@ body {
     min-height: 100vh;
     direction: rtl;
     text-align: right;
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     line-height: 1.7;
     font-weight: 400;
     opacity: 1;
@@ -41,7 +45,7 @@ body.loaded {
 
 header {
     text-align: center;
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     margin-bottom: 50px;
     padding: 40px 0;
 }
@@ -98,7 +102,7 @@ header h1 {
     font-size: 3em;
     font-weight: 600;
     margin-bottom: 15px;
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     letter-spacing: -0.025em;
     background: none;
     -webkit-background-clip: text;
@@ -110,7 +114,7 @@ header h1 {
 
 header p {
     font-size: 1.2em;
-    color: var(--col-sandy-brown);
+    color: var(--col-soft-brown);
     margin-bottom: 20px;
     font-weight: 400;
     opacity: 0;
@@ -118,43 +122,49 @@ header p {
 }
 
 .by-ksenia {
-    font-family: 'Caveat', cursive;
-    font-size: 1.5rem;
-    color: var(--col-pinkish-brown);
+    font-family: 'Hello Paris Script', cursive;
+    font-size: 1.8rem;
+    color: var(--col-gold);
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
     opacity: 0;
-    animation: fadeInUp 1s 0.5s ease-out forwards;
+    animation: fadeInUp 1s 0.8s ease-out forwards;
     position: relative;
     display: inline-block;
+    text-shadow: 0 1px 2px rgba(212, 175, 55, 0.3);
+    letter-spacing: 1px;
 }
 
 .by-ksenia::before {
-    content: "✨";
-    margin-left: 8px;
-    opacity: 0.7;
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--col-light-gold), transparent);
+    opacity: 0.6;
 }
 
 .by-ksenia::after {
-    content: "✨";
-    margin-right: 8px;
-    opacity: 0.7;
+    content: "";
 }
 
 .section {
-    background: rgba(224, 215, 199, 0.6);
+    background: rgba(201, 194, 178, 0.4);
     backdrop-filter: blur(20px);
     border-radius: 24px;
-    padding: 40px;
-    margin-bottom: 30px;
+    padding: 50px 40px;
+    margin: 30px auto;
+    max-width: 600px;
+    border: 1px solid rgba(166, 155, 139, 0.2);
     box-shadow: 
-        0 4px 6px -1px rgba(57, 70, 58, 0.05),
-        0 2px 4px -1px rgba(57, 70, 58, 0.03);
-    display: none;
-    border: 1px solid rgba(146, 124, 103, 0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        0 20px 25px -5px rgba(139, 125, 107, 0.1),
+        0 10px 10px -5px rgba(139, 125, 107, 0.05);
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .section.active {
@@ -222,8 +232,8 @@ header p {
 }
 
 button {
-    background: var(--col-deep-green);
-    color: var(--col-light-beige);
+    background: var(--col-warm-gold);
+    color: var(--col-deep-brown);
     padding: 16px 32px;
     border: none;
     border-radius: 16px;
@@ -234,7 +244,7 @@ button {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: block;
     margin: 30px auto;
-    box-shadow: 0 4px 6px -1px rgba(57, 70, 58, 0.25);
+    box-shadow: 0 4px 6px -1px rgba(212, 175, 55, 0.25);
     position: relative;
     overflow: hidden;
 }
@@ -246,14 +256,14 @@ button::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(224, 215, 199, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(201, 194, 178, 0.2), transparent);
     transition: left 0.5s;
 }
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 15px -3px rgba(57, 70, 58, 0.3);
-    background: var(--col-pinkish-brown);
+    box-shadow: 0 8px 15px -3px rgba(212, 175, 55, 0.3);
+    background: var(--col-gold);
 }
 
 button:hover::before {
@@ -306,18 +316,29 @@ button:active {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--col-light-beige) 0%, #d4cbbd 70%, var(--col-sandy-brown) 100%);
-    border: 3px solid var(--col-pinkish-brown);
+    background: radial-gradient(circle, var(--col-cream) 0%, var(--col-peanut) 70%, var(--col-soft-brown) 100%);
+    border: 3px solid var(--col-gold);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 
-        0 20px 25px -5px rgba(57, 70, 58, 0.15),
-        0 10px 10px -5px rgba(57, 70, 58, 0.1),
-        inset 0 2px 4px rgba(224, 215, 199, 0.9);
+        0 20px 25px -5px rgba(139, 125, 107, 0.15),
+        0 10px 10px -5px rgba(139, 125, 107, 0.1),
+        inset 0 2px 4px rgba(201, 194, 178, 0.9);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     animation: fadeInScale 1s ease-out 0.5s forwards;
+    transform-origin: center;
+}
+
+.compass.rotating {
+    animation: compassRotate 2s ease-in-out;
+}
+
+@keyframes compassRotate {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(360deg); }
+    100% { transform: rotate(0deg); }
 }
 
 @keyframes fadeInScale {
@@ -334,8 +355,8 @@ button:active {
 .compass:hover {
     transform: scale(1.02);
     box-shadow: 
-        0 25px 30px -5px rgba(57, 70, 58, 0.2),
-        0 15px 15px -5px rgba(57, 70, 58, 0.1);
+        0 25px 30px -5px rgba(139, 125, 107, 0.2),
+        0 15px 15px -5px rgba(139, 125, 107, 0.1);
 }
 
 .compass-center {
@@ -343,9 +364,50 @@ button:active {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--col-deep-green);
-    box-shadow: 0 2px 4px rgba(57, 70, 58, 0.3);
+    background: var(--col-deep-brown);
+    box-shadow: 0 2px 4px rgba(139, 125, 107, 0.3);
     z-index: 10;
+}
+
+.compass-needle {
+    position: absolute;
+    width: 4px;
+    height: 120px;
+    background: linear-gradient(180deg, #dc2626 0%, #dc2626 45%, var(--col-deep-brown) 55%, var(--col-deep-brown) 100%);
+    border-radius: 2px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: center center;
+    z-index: 5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 1s ease-in-out;
+}
+
+.compass-needle::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 16px solid #dc2626;
+}
+
+.compass-needle::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 16px solid var(--col-deep-brown);
 }
 
 .compass-directions {
@@ -386,21 +448,21 @@ button:active {
 .direction:nth-child(8) { animation-delay: 1.5s; }
 
 .direction.good {
-    background: var(--col-deep-green);
-    color: var(--col-light-beige);
-    box-shadow: 0 4px 6px -1px rgba(57, 70, 58, 0.25);
+    background: var(--col-warm-gold);
+    color: var(--col-deep-brown);
+    box-shadow: 0 4px 6px -1px rgba(212, 175, 55, 0.25);
 }
 
 .direction.bad {
-    background: var(--col-pinkish-brown);
-    color: var(--col-light-beige);
-    box-shadow: 0 4px 6px -1px rgba(171, 138, 122, 0.25);
+    background: var(--col-soft-brown);
+    color: var(--col-cream);
+    box-shadow: 0 4px 6px -1px rgba(166, 155, 139, 0.25);
 }
 
 .direction.neutral {
-    background: var(--col-smoky-blue);
-    color: var(--col-light-beige);
-    box-shadow: 0 4px 6px -1px rgba(115, 134, 138, 0.25);
+    background: var(--col-peanut);
+    color: var(--col-deep-brown);
+    box-shadow: 0 4px 6px -1px rgba(201, 194, 178, 0.25);
 }
 
 .direction:hover {
@@ -426,7 +488,7 @@ button:active {
 
 .directions-info h3 {
     text-align: center;
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     margin-bottom: 25px;
     font-size: 1.4em;
     font-weight: 600;
@@ -442,29 +504,29 @@ button:active {
 }
 
 .good-directions {
-    background: rgba(57, 70, 58, 0.05);
-    border-color: rgba(57, 70, 58, 0.1);
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.15);
 }
 
 .bad-directions {
-    background: rgba(171, 138, 122, 0.05);
-    border-color: rgba(171, 138, 122, 0.1);
+    background: rgba(166, 155, 139, 0.08);
+    border-color: rgba(166, 155, 139, 0.15);
 }
 
 .good-directions:hover,
 .bad-directions:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 6px -1px rgba(57, 70, 58, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(139, 125, 107, 0.08);
 }
 
 .good-directions h4 {
-    color: var(--col-deep-green);
+    color: var(--col-warm-gold);
     margin-bottom: 15px;
     font-weight: 600;
 }
 
 .bad-directions h4 {
-    color: var(--col-pinkish-brown);
+    color: var(--col-soft-brown);
     margin-bottom: 15px;
     font-weight: 600;
 }
@@ -481,7 +543,7 @@ button:active {
     padding: 8px 0;
     font-weight: 400;
     transition: all 0.2s ease;
-    color: var(--col-sandy-brown);
+    color: var(--col-deep-brown);
 }
 
 .good-directions li:hover,
@@ -491,26 +553,26 @@ button:active {
 
 .good-directions li:before {
     content: "✓ ";
-    color: var(--col-deep-green);
+    color: var(--col-warm-gold);
     font-weight: 600;
     margin-left: 8px;
 }
 
 .bad-directions li:before {
     content: "✗ ";
-    color: var(--col-pinkish-brown);
+    color: var(--col-soft-brown);
     font-weight: 600;
     margin-left: 8px;
 }
 
 .back-btn {
-    background: var(--col-smoky-blue);
-    box-shadow: 0 4px 6px -1px rgba(115, 134, 138, 0.25);
+    background: var(--col-peanut);
+    box-shadow: 0 4px 6px -1px rgba(201, 194, 178, 0.25);
 }
 
 .back-btn:hover {
-    background: var(--col-deep-green);
-    box-shadow: 0 8px 10px -4px rgba(57, 70, 58, 0.3);
+    background: var(--col-warm-gold);
+    box-shadow: 0 8px 10px -4px rgba(212, 175, 55, 0.3);
     transform: translateY(-2px) scale(1.02);
 }
 

@@ -178,6 +178,39 @@ function showCompass(kua) {
     
     // מעבר למצפן
     switchSection(kuaResultSection, compassSection);
+    
+    // הפעלת אנימציית הסיבוב והכיוון המחט
+    setTimeout(() => {
+        animateCompass(data.goodDirections[0]);
+    }, 500);
+}
+
+// פונקציה לסיבוב המצפן והמחט
+function animateCompass(primaryDirection) {
+    const compass = document.getElementById('compass');
+    const needle = document.getElementById('compass-needle');
+    
+    // סיבוב המצפן
+    compass.classList.add('rotating');
+    
+    // חישוב זווית המחט לפי הכיוון הטוב הראשון
+    const directionAngles = {
+        'צפון': 0,
+        'צפון מזרח': 45,
+        'מזרח': 90,
+        'דרום מזרח': 135,
+        'דרום': 180,
+        'דרום מערב': 225,
+        'מערב': 270,
+        'צפון מערב': 315
+    };
+    
+    const angle = directionAngles[primaryDirection] || 0;
+    
+    setTimeout(() => {
+        needle.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+        compass.classList.remove('rotating');
+    }, 1000);
 }
 
 // עדכון הכיוונים במצפן
