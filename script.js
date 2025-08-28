@@ -114,7 +114,7 @@ const birthForm = document.getElementById('birth-form');
 const kuaResultSection = document.getElementById('kua-result-section');
 const compassSection = document.getElementById('compass-section');
 const birthDateSection = document.getElementById('birth-date-section');
-const kuaNumber = document.getElementById('kua-number');
+const kuaNumberElement = document.getElementById('kua-number');
 const kuaDescription = document.getElementById('kua-description');
 const goToCompassBtn = document.getElementById('go-to-compass');
 const backToStartBtn = document.getElementById('back-to-start');
@@ -154,7 +154,7 @@ birthForm.addEventListener('submit', function(e) {
 function showKuaResult(kua) {
     const data = kuaData[kua];
     
-    kuaNumber.textContent = kua;
+    kuaNumberElement.textContent = kua;
     kuaDescription.textContent = data.description;
     
     // מעבר לתוצאה

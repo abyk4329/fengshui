@@ -31,10 +31,77 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.page {
+.container {
     max-width: 920px;
-    margin: 48px auto;
-    padding: 32px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.header-text {
+    text-align: center;
+}
+
+.compass-btn {
+    background: linear-gradient(135deg, var(--gold) 0%, #c19b26 100%);
+    color: var(--rosy-finch);
+    padding: 18px 40px;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    margin: 35px auto;
+    box-shadow: 
+        0 8px 15px -3px rgba(212, 175, 55, 0.3),
+        0 4px 8px -2px rgba(212, 175, 55, 0.15);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    letter-spacing: 0.5px;
+}
+
+.back-btn {
+    background: var(--muted-brown);
+    box-shadow: 0 4px 6px -1px rgba(137, 80, 86, 0.25);
+}
+
+.compass-directions {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.created-by {
+    font-size: 1.1em;
+    color: var(--olive-smoke);
+    font-weight: 500;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.2s forwards;
+}
+
+.creator-text {
+    text-align: center;
+}
+
+.description {
+    font-size: 0.95em;
+    color: var(--muted-brown);
+    font-style: italic;
+    opacity: 0;
+    animation: fadeInUp 1s ease-out 1.8s forwards;
 }
 
 header {
@@ -153,7 +220,5 @@ footer { text-align:center; color:var(--ash-grey); margin-top:26px }
 /* Responsive */
 @media (max-width:820px){ .page{padding:20px} .compass{width:280px;height:280px} .kua-number{font-size:44px} .directions-info{grid-template-columns:1fr} }
 @media (max-width:420px){ header h1{font-size:20px} .compass{width:220px;height:220px} .compass-needle{height:44%} .logo-image{max-width:78px} }
-
-@media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
 
 @media (prefers-reduced-motion: reduce){ *{animation:none!important; transition:none!important} }
