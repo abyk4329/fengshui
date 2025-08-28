@@ -25,7 +25,7 @@ body {
     color: var(--col-deep-green);
     line-height: 1.7;
     font-weight: 400;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.8s ease-in-out;
 }
 
