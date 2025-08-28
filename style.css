@@ -29,7 +29,7 @@ body {
     color: var(--col-deep-brown);
     line-height: 1.7;
     font-weight: 400;
-    opacity: 1;
+    opacity: 1 !important;
     transition: opacity 0.8s ease-in-out;
 }
 
@@ -162,13 +162,16 @@ header p {
     box-shadow: 
         0 20px 25px -5px rgba(139, 125, 107, 0.1),
         0 10px 10px -5px rgba(139, 125, 107, 0.05);
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: translateY(0);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
 }
 
 .section.active {
-    display: block;
+    display: block !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
     animation: slideInFade 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
@@ -187,7 +190,7 @@ header p {
 }
 
 .section h2 {
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     margin-bottom: 30px;
     text-align: center;
     font-size: 2em;
@@ -203,7 +206,7 @@ header p {
     display: block;
     margin-bottom: 8px;
     font-weight: 500;
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     font-size: 0.95em;
 }
 
@@ -211,19 +214,19 @@ header p {
 .form-group select {
     width: 100%;
     padding: 16px 20px;
-    border: 1px solid var(--col-sandy-brown);
+    border: 1px solid var(--col-soft-brown);
     border-radius: 16px;
     font-size: 16px;
     font-family: inherit;
-    background: rgba(224, 215, 199, 0.4);
+    background: rgba(201, 194, 178, 0.25);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
 }
 
 .form-group input:focus,
 .form-group select:focus {
     outline: none;
-    border-color: var(--col-pinkish-brown);
+    border-color: var(--col-warm-gold);
     box-shadow: 
         0 0 0 3px rgba(171, 138, 122, 0.15),
         0 1px 3px 0 rgba(57, 70, 58, 0.1);
@@ -278,7 +281,7 @@ button:active {
     font-size: 5em;
     font-weight: 700;
     text-align: center;
-    color: var(--col-deep-green);
+    color: var(--col-deep-brown);
     margin-bottom: 25px;
     opacity: 0;
     animation: scaleIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
@@ -298,7 +301,7 @@ button:active {
 .kua-description {
     font-size: 1.1em;
     text-align: center;
-    color: var(--col-sandy-brown);
+    color: var(--col-soft-brown);
     line-height: 1.7;
     margin-bottom: 35px;
     opacity: 0;
@@ -579,7 +582,7 @@ button:active {
 footer {
     text-align: center;
     padding: 40px 20px;
-    color: var(--col-sandy-brown);
+    color: var(--col-soft-brown);
     font-size: 0.9em;
 }
 
@@ -665,7 +668,7 @@ footer {
 }
 
 #form-error {
-    color: var(--col-pinkish-brown);
+    color: var(--col-soft-brown);
     text-align: center;
     margin-top: 15px;
     font-weight: 500;

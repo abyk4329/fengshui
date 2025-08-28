@@ -179,10 +179,13 @@ function showCompass(kua) {
     // מעבר למצפן
     switchSection(kuaResultSection, compassSection);
     
-    // הפעלת אנימציית הסיבוב והכיוון המחט
+    // ברירת מחדל: הצבעה לכיוון הטוב הראשון
     setTimeout(() => {
         animateCompass(data.goodDirections[0]);
     }, 500);
+
+    // הצעת הרשאה למצפן חי
+    setupOrientationHandling();
 }
 
 // פונקציה לסיבוב המצפן והמחט
@@ -211,6 +214,45 @@ function animateCompass(primaryDirection) {
         needle.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
         compass.classList.remove('rotating');
     }, 1000);
+}
+
+// הרשאות וחיבור למצפן אמיתי
+function setupOrientationHandling() {
+    const btn = document.getElementById('enable-orientation');
+    const statusEl = document.getElementById('orientation-status');
+    if (!btn) return;
+
+    const onHeading = (alpha) => {
+        // התאמה ל-RTL/פריסה: 0=N, 90=E, 180=S, 270=W
+        const needle = document.getElementById('compass-needle');
+        if (!needle) return;
+        const deg = typeof alpha === 'number' ? alpha : 0;
+        needle.style.transform = `translate(-50%, -50%) rotate(${deg}deg)`;
+    };
+
+    const attachListener = () => {
+        if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // iOS
+            DeviceOrientationEvent.requestPermission().then((res) => {
+                if (res === 'granted') {
+                    window.addEventListener('deviceorientation', (e) => onHeading(e.alpha));
+                    statusEl && (statusEl.textContent = 'מצפן חי מופעל');
+                } else {
+                    statusEl && (statusEl.textContent = 'ההרשאה נדחתה. משתמשים בברירת מחדל.');
+                }
+            }).catch(() => {
+                statusEl && (statusEl.textContent = 'שגיאה בהרשאה. משתמשים בברירת מחדל.');
+            });
+        } else if (window.DeviceOrientationEvent) {
+            // אנדרואיד/דפדפנים התומכים ללא בקשת הרשאה מפורשת
+            window.addEventListener('deviceorientation', (e) => onHeading(e.alpha));
+            statusEl && (statusEl.textContent = 'מצפן חי מופעל');
+        } else {
+            statusEl && (statusEl.textContent = 'הדפדפן לא תומך במצפן חי.');
+        }
+    };
+
+    btn.onclick = attachListener;
 }
 
 // עדכון הכיוונים במצפן
