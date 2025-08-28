@@ -120,6 +120,7 @@ const goToCompassBtn = document.getElementById('go-to-compass');
 const backToStartBtn = document.getElementById('back-to-start');
 const goodDirectionsList = document.getElementById('good-directions-list');
 const badDirectionsList = document.getElementById('bad-directions-list');
+const formError = document.getElementById('form-error');
 
 let currentKua = null;
 
@@ -131,8 +132,12 @@ birthForm.addEventListener('submit', function(e) {
     const genderInput = document.getElementById('gender');
     
     if (!birthDateInput.value || !genderInput.value) {
-        alert('אנא מלא את כל השדות');
+        formError.textContent = 'אנא מלא/י את תאריך הלידה ובחר/י מין.';
+        formError.style.display = 'block';
         return;
+    } else {
+        formError.textContent = '';
+        formError.style.display = 'none';
     }
     
     const birthDate = new Date(birthDateInput.value);
@@ -153,8 +158,7 @@ function showKuaResult(kua) {
     kuaDescription.textContent = data.description;
     
     // מעבר לתוצאה
-    birthDateSection.classList.remove('active');
-    kuaResultSection.classList.add('active');
+    switchSection(birthDateSection, kuaResultSection);
 }
 
 // מעבר למצפן
@@ -173,8 +177,7 @@ function showCompass(kua) {
     updateDirectionsList(data);
     
     // מעבר למצפן
-    kuaResultSection.classList.remove('active');
-    compassSection.classList.add('active');
+    switchSection(kuaResultSection, compassSection);
 }
 
 // עדכון הכיוונים במצפן
@@ -242,7 +245,17 @@ backToStartBtn.addEventListener('click', function() {
     compassSection.classList.remove('active');
     kuaResultSection.classList.remove('active');
     birthDateSection.classList.add('active');
+    birthDateSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
+
+// פונקציית עזר למעבר חלק בין חלקים
+function switchSection(fromEl, toEl) {
+    if (fromEl) fromEl.classList.remove('active');
+    if (toEl) {
+        toEl.classList.add('active');
+        toEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
 
 // הוספת אפקט לכיוונים במצפן
 document.addEventListener('DOMContentLoaded', function() {
