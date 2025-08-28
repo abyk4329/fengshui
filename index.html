@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מצפן פנג שואי - חישוב קואה</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <!-- כאן תוכלי להוסיף את הלוגו שלך -->
+                    <div class="logo-placeholder">🔮</div>
+                </div>
+                <div class="header-text">
+                    <h1>מצפן פנג שואי</h1>
+                    <p>גלה את מספר הקואה שלך ואת הכיוונים התומכים בך</p>
+                    <div class="by-ksenia">by Ksenia</div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <!-- שלב 1: הכנסת תאריך לידה -->
+            <section id="birth-date-section" class="section active">
+                <h2>הכנס את תאריך הלידה שלך</h2>
+                <form id="birth-form">
+                    <div class="form-group">
+                        <label for="birth-date">תאריך לידה:</label>
+                        <input type="date" id="birth-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">מין:</label>
+                        <select id="gender" required>
+                            <option value="">בחר מין</option>
+                            <option value="male">זכר</option>
+                            <option value="female">נקבה</option>
+                        </select>
+                    </div>
+                    <button type="submit">חשב קואה</button>
+                </form>
+            </section>
+
+            <!-- שלב 2: תוצאת הקואה -->
+            <section id="kua-result-section" class="section">
+                <h2>מספר הקואה שלך</h2>
+                <div id="kua-display">
+                    <div class="kua-number" id="kua-number"></div>
+                    <div class="kua-description" id="kua-description"></div>
+                </div>
+                <button id="go-to-compass" class="compass-btn">עבור למצפן</button>
+            </section>
+
+            <!-- שלב 3: המצפן -->
+            <section id="compass-section" class="section">
+                <h2>המצפן שלך</h2>
+                <div class="compass-container">
+                    <div class="compass" id="compass">
+                        <div class="compass-center"></div>
+                        <div class="compass-directions">
+                            <div class="direction north" data-direction="north">צפון</div>
+                            <div class="direction northeast" data-direction="northeast">צפון מזרח</div>
+                            <div class="direction east" data-direction="east">מזרח</div>
+                            <div class="direction southeast" data-direction="southeast">דרום מזרח</div>
+                            <div class="direction south" data-direction="south">דרום</div>
+                            <div class="direction southwest" data-direction="southwest">דרום מערב</div>
+                            <div class="direction west" data-direction="west">מערב</div>
+                            <div class="direction northwest" data-direction="northwest">צפון מערב</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="directions-info">
+                    <h3>הכיוונים שלך:</h3>
+                    <div class="good-directions">
+                        <h4>כיוונים טובים:</h4>
+                        <ul id="good-directions-list"></ul>
+                    </div>
+                    <div class="bad-directions">
+                        <h4>כיוונים לא מומלצים:</h4>
+                        <ul id="bad-directions-list"></ul>
+                    </div>
+                </div>
+                <button id="back-to-start" class="back-btn">חזור לתחילת</button>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
