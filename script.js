@@ -246,15 +246,42 @@ backToStartBtn.addEventListener('click', function() {
 
 // הוספת אפקט לכיוונים במצפן
 document.addEventListener('DOMContentLoaded', function() {
+    // אנימציה חלקה לעמידה
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 100);
+    
     const directions = document.querySelectorAll('.direction');
     
-    directions.forEach(direction => {
+    directions.forEach((direction, index) => {
         direction.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.1)';
+            this.style.transform += ' scale(1.1) translateY(-2px)';
+            this.style.zIndex = '100';
         });
         
         direction.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
+            // שחזור המיקום המקורי
+            const originalTransform = this.classList.contains('north') || this.classList.contains('south') ? 
+                'translateX(-50%)' : 
+                this.classList.contains('east') || this.classList.contains('west') ? 
+                'translateY(-50%)' : '';
+            
+            this.style.transform = originalTransform;
+            this.style.zIndex = 'auto';
+        });
+        
+        // אנימציית כניסה מדורגת
+        direction.style.animationDelay = `${0.8 + index * 0.1}s`;
+    });
+    
+    // אפקט לחלקות למעברים בין חלקים
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.addEventListener('transitionend', function() {
+            if (this.classList.contains('active')) {
+                this.style.transform = 'translateY(0)';
+                this.style.opacity = '1';
+            }
         });
     });
 });
